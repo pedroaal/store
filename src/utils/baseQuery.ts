@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-const API_HOST = 'http://localhost:8080'
-// const API_HOST = process.env.API_HOST
+const API_HOST = import.meta.env.VITE_API_HOST
 
 interface IQuery {
   url: string
