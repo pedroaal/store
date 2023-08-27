@@ -1,6 +1,6 @@
 import { For } from 'solid-js'
 
-import { ITask } from '../types/task'
+import { ITask, ITaskStatus } from '../types/task'
 import { TASK_STATUS } from '../config/status'
 
 interface IProps extends ITask {
@@ -33,7 +33,7 @@ const TaskForm = (props: IProps) => {
         <label for="status">Status</label>
         <select class='input' name="status" id="status" disabled={!props.id} onChange={handleForm}>
           <For each={Object.keys(TASK_STATUS)}>
-            {(key) => <option value={key} selected={props.status === key}>{TASK_STATUS[key]}</option>}
+            {(key: ITaskStatus) => <option value={key} selected={props.status === key}>{TASK_STATUS[key]}</option>}
           </For>
         </select>
       </div>
