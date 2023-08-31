@@ -7,14 +7,21 @@ interface IQuery {
   method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
   data?: Record<string, unknown>
   params?: Record<string, unknown>
+  transform?: (data: Record<string, unknown>) => unknown
 }
 
 const baseQuery = async (args: IQuery) => {
+  const { transform, ...query } = args
+
   try {
     const res = await axios({
-      ...args,
+      ...query,
       baseURL: API_HOST,
     })
+
+    if (transform) {
+      return transform(res.data)
+    }
 
     return res.data
   } catch (error) {

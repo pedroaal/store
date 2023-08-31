@@ -2,12 +2,14 @@ import { CreateMutationOptions, createMutation, createQuery } from '@tanstack/so
 
 import baseQuery from '../utils/baseQuery'
 import { ITask } from '../types/task'
+import { taskDto, tasksDto } from './task.dto'
 
 export const createGetTasks = () => createQuery({
   queryKey: () => ['tasks'],
   queryFn: async () => await baseQuery({
     url: '/task',
-    method: 'GET'
+    method: 'GET',
+    transform: tasksDto
   })
 })
 
@@ -16,7 +18,8 @@ export const createCreateTask = (options?: Omit<CreateMutationOptions<unknown, u
   mutationFn: async (data: ITask) => await baseQuery({
     url: '/task',
     method: 'POST',
-    data
+    data,
+    transform: taskDto
   })
 })
 
@@ -25,7 +28,8 @@ export const createUpdateTask = (options?: Omit<CreateMutationOptions<unknown, u
   mutationFn: async (data: ITask) => await baseQuery({
     url: `/task/${data.id}`,
     method: 'PUT',
-    data
+    data,
+    transform: taskDto
   })
 })
 

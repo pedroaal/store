@@ -9,3 +9,11 @@ export interface ITask {
 	status: ITaskStatus
 	createdAt?: Date
 }
+
+export interface ITaskRes {
+	Id: number
+	Title: string
+	Description: string
+	Status: ITaskStatus
+	CreatedAt: Date
+}
