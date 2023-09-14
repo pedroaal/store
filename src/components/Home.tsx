@@ -1,17 +1,25 @@
 import { Component, createResource, For } from 'solid-js'
 
-import { getCategories } from '../services/categories.service'
+import { getProducts } from '../services/product.service'
+
+import { Product } from './Product'
+import { Banner } from './Banner'
+import Main from '../layouts/Main'
 
 const Home: Component = () => {
-  const [categories] = createResource(getCategories)
+  const [products] = createResource(getProducts)
   
   return (
-    <>
-      <div>Home</div>
-      <ul>
-        <For each={categories()}>{(category) => <li>{category.name}</li>}</For>
-      </ul>
-    </>
+    <Main>
+      <Banner />
+      <Main.Section>
+        <div class='grid grid-cols-5 grid-flow-row gap-4'>
+          <For each={products()}>
+            {(product) => <Product {...product} />}
+          </For>
+        </div>
+      </Main.Section>
+    </Main>
   )
 }
 
