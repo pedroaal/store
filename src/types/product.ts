@@ -8,3 +8,7 @@ export interface IProduct {
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+export interface ICartProduct extends IProduct {
+  quantity: number;
+}
