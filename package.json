@@ -24,6 +24,7 @@
     "vite-plugin-solid": "^2.7.0"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.33.2",
     "@tanstack/solid-query": "^4.33.0",
     "axios": "^1.4.0",
     "date-fns": "^2.30.0",
