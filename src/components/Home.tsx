@@ -13,7 +13,7 @@ const Home: Component = () => {
     <Main>
       <Banner />
       <Main.Section>
-        <div class='grid grid-cols-5 grid-flow-row gap-4'>
+        <div class='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 grid-flow-row gap-4'>
           <For each={products()}>
             {(product) => <Product {...product} />}
           </For>
