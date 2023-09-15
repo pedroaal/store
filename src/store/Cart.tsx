@@ -3,30 +3,35 @@ import { createStore } from 'solid-js/store'
 
 import { ICartProduct, IProduct } from '../types/product'
 
-interface IProps {
-  children: JSXElement
+interface ICart {
+  products: ICartProduct[]
+  total: number
 }
 
 interface ICartStore {
-  cart: { products:[], total: number },
-  addToCart: (product: IProduct) => void,
-  removeProduct: (id: number) => void,
-  increment: (id: number) => void,
+  cart: ICart
+  addToCart: (product: IProduct) => void
+  removeProduct: (id: number) => void
+  increment: (id: number) => void
   decrement: (id: number) => void
 }
 
+interface ICartProviderProps {
+  children: JSXElement
+}
+
 export const CartContext = createContext<ICartStore>({
-  cart: { products:[], total: 0 },
+  cart: { products: [], total: 0 },
   addToCart: () => {},
   removeProduct: () => {},
   increment: () => {},
   decrement: () => {}
 })
 
-export const CartProvider: Component<IProps> = (props) => {
-  const [cart, setCart] = createStore({ products: [], total: 0 })
+export const CartProvider: Component<ICartProviderProps> = (props) => {
+  const [cart, setCart] = createStore<ICart>({ products: [], total: 0 })
 
-  const calculatTotal = () => {
+  const getTotal = () => {
     const total = cart.products.reduce((acc, product) => acc + (product.price * product.quantity), 0)
 
     setCart('total', Number(total.toFixed(2)))
@@ -43,7 +48,7 @@ export const CartProvider: Component<IProps> = (props) => {
       return [...oldState, {...newProduct, quantity: 1}]
     })
 
-    calculatTotal()
+    getTotal()
   }
 
   const removeProduct = (id: number) => {
@@ -51,7 +56,7 @@ export const CartProvider: Component<IProps> = (props) => {
       return oldState.filter((product) => product.id !== id)
     })
 
-    calculatTotal()
+    getTotal()
   }
 
   const increment = (id: number) => {
@@ -64,7 +69,7 @@ export const CartProvider: Component<IProps> = (props) => {
       })
     })
 
-    calculatTotal()
+    getTotal()
   }
 
   const decrement = (id: number) => {
@@ -83,7 +88,7 @@ export const CartProvider: Component<IProps> = (props) => {
       })
     })
 
-    calculatTotal()
+    getTotal()
   }
 
   const store = {

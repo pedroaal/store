@@ -2,23 +2,23 @@ import { Accessor, Component, JSXElement, createContext, createSignal } from 'so
 
 import { IModals } from '../types/modals'
 
-interface IStore {
+interface IModalStore {
   current: Accessor<IModals|undefined>,
-  open: (modal: string) => void,
+  open: (modal: IModals) => void,
   close: () => void,
 }
 
-interface IProps {
+interface IModalProviderProps {
   children: JSXElement
 }
 
-export const ModalContext = createContext<IStore>({
+export const ModalContext = createContext<IModalStore>({
   current: () => undefined,
-  open: () => {},
+  open: (modal: IModals) => modal,
   close: () => {}
 })
 
-export const ModalProvider: Component<IProps> = (props) => {
+export const ModalProvider: Component<IModalProviderProps> = (props) => {
   const [current, setCurrent] = createSignal<IModals|undefined>(undefined)
 
   const open = (modal: IModals) => {

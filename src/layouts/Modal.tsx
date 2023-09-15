@@ -3,12 +3,12 @@ import { Component, JSXElement, Show, useContext } from 'solid-js'
 
 import { ModalContext } from '../store/Modal'
 
-interface IProps {
+interface IModalProps {
   children: JSXElement
   isOpen: boolean
 }
 
-const Modal: Component<IProps> = (props) => {
+const Modal: Component<IModalProps> = (props) => {
   const { close } = useContext(ModalContext)
 
   return (
