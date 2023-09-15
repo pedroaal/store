@@ -13,7 +13,7 @@ const Modal: Component<IModalProps> = (props) => {
 
   return (
     <Show when={props.isOpen}>
-      <div class='absolute top-0 left-0 w-screen h-screen bg-gray-800/50'>
+      <div class='fixed top-0 left-0 w-screen h-screen bg-gray-800/50'>
         <HiSolidXMark class='absolute top-4 right-4 w-10 h-10 text-white' onClick={close} />
         <div class="container m-auto py-8">
           {props.children}
