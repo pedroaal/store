@@ -1,5 +1,5 @@
 import { HiSolidXMark } from 'solid-icons/hi'
-import { JSXElement, Show, useContext } from 'solid-js'
+import { Component, JSXElement, Show, useContext } from 'solid-js'
 
 import { ModalContext } from '../store/Modal'
 
@@ -8,7 +8,7 @@ interface IProps {
   isOpen: boolean
 }
 
-const Modal = (props: IProps) => {
+const Modal: Component<IProps> = (props) => {
   const { close } = useContext(ModalContext)
 
   return (

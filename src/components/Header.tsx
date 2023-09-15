@@ -1,7 +1,7 @@
 import { Component, useContext } from 'solid-js'
 import { HiSolidShoppingBag } from 'solid-icons/hi'
 
-import { CartContext } from '../store/cart'
+import { CartContext } from '../store/Cart'
 import { MODALS } from '../constants/modals'
 import { ModalContext } from '../store/Modal'
 

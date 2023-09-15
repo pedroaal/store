@@ -1,6 +1,11 @@
+import { Component, JSXElement } from 'solid-js'
 import { Header } from '../components/Header'
 
-const Section = (props) => {
+interface ISectionProps {
+  children: JSXElement
+}
+
+const Section: Component<ISectionProps> = (props) => {
   return (
     <div class='container p-4 m-auto'>
       {props.children}
@@ -8,7 +13,15 @@ const Section = (props) => {
   )
 }
 
-const Main = (props) => {
+interface IMainProps {
+  children: JSXElement
+}
+
+interface MainComponent extends Component<IMainProps> {
+  Section: Component<ISectionProps>
+}
+
+const Main: MainComponent = (props) => {
   return (
     <div class='min-w-screen min-h-screen'>
       <Header />

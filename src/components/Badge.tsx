@@ -1,10 +1,10 @@
 import { Component } from 'solid-js'
 
-interface BadgeProps {
+interface IProps {
   count: number
 }
 
-const Badge: Component<BadgeProps> = props => {
+const Badge: Component<IProps> = (props) => {
   return (
     <div class='absolute -top-1.5 -left-1.5'>
       <span class='bg-gray-600 p-1.5 rounded-full text-xs'>

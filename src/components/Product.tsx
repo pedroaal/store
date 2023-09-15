@@ -1,7 +1,7 @@
 import { Component, useContext } from 'solid-js'
 
 import { IProduct } from '../types/product'
-import { CartContext } from '../store/cart'
+import { CartContext } from '../store/Cart'
 
 export const Product: Component<IProduct> = (props) => {
   const { title, price, thumbnail } = props

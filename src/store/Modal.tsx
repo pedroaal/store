@@ -1,4 +1,4 @@
-import { Accessor, JSXElement, createContext, createSignal } from 'solid-js'
+import { Accessor, Component, JSXElement, createContext, createSignal } from 'solid-js'
 
 import { IModals } from '../types/modals'
 
@@ -18,7 +18,7 @@ export const ModalContext = createContext<IStore>({
   close: () => {}
 })
 
-export function ModalProvider(props: IProps) {
+export const ModalProvider: Component<IProps> = (props) => {
   const [current, setCurrent] = createSignal<IModals|undefined>(undefined)
 
   const open = (modal: IModals) => {

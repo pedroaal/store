@@ -1,14 +1,14 @@
 import { HiSolidTrash } from 'solid-icons/hi'
 import { Component, For, useContext } from 'solid-js'
 
-import { CartContext } from '../store/cart'
+import { CartContext } from '../store/Cart'
 import { ModalContext } from '../store/Modal'
 import { ICartProduct } from '../types/product'
 
 import Modal from '../layouts/Modal'
 import { MODALS } from '../constants/modals'
 
-export const Detail: Component = (props: ICartProduct) => {
+export const Detail: Component<ICartProduct> = (props) => {
   const {id, title, thumbnail, price, quantity} = props
   const {removeProduct, increment, decrement} = useContext(CartContext)
 
