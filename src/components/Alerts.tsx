@@ -52,7 +52,7 @@ export const Alerts: Component = () => {
   
   return (
     <Show when={alerts().length}>
-      <div class='fixed top-0 right-0 p-8'>
+      <div class='fixed top-0 right-0 p-8 flex flex-col gap-2'>
         <For each={alerts()}>
           {alert => <Alert {...alert} />}
         </For>
