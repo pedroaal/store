@@ -1,7 +1,11 @@
-import { createContext } from 'solid-js'
+import { JSXElement, createContext } from 'solid-js'
 import { createStore } from 'solid-js/store'
 
 import { ICartProduct, IProduct } from '../types/product'
+
+interface IProps {
+  children: JSXElement
+}
 
 interface ICartStore {
   cart: { products:[], total: number },
@@ -19,7 +23,7 @@ export const CartContext = createContext<ICartStore>({
   decrement: () => {}
 })
 
-export function CartProvider(props) {
+export const CartProvider = (props: IProps) => {
   const [cart, setCart] = createStore({ products: [], total: 0 })
 
   const calculatTotal = () => {
